@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddDbContext<ApplicationDbContext>(config => config.UseNpgsql(builder.Configuration["db"]));
+builder.Services.AddHostedService<DefaultUserService>();
+builder.Services.AddDbContext<ApplicationDbContext>(config => config.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddDefaultTokenProviders()

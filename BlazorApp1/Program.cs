@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<WeatherForecastService>();
 builder.Services.AddHostedService<DefaultUserService>();
 builder.Services.AddDbContext<ApplicationDbContext>(config => config.UseNpgsql(builder.Configuration.GetConnectionString("db")));
 
